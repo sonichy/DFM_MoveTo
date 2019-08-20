@@ -1,0 +1,4 @@
+Makefile
+.qmake.stash
+*.o
+*.pro.user

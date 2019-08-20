@@ -1,6 +1,8 @@
 # 深度文管【移动到】插件
 ![](moveto.png)
+
 ![](dialog.png)
+
 [官方文档](https://github.com/linuxdeepin/dde-file-manager-menu-oem)
 
 ## Desktop文件

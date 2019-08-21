@@ -37,9 +37,9 @@ void cut(QString source, QString Dir)
                 }
             }
         }else{
-            // 修改文件时间
             QFile file(dest);
-            //qDebug() << "修改粘贴文件时间为原文件时间" <<
+            file.open(QIODevice::ReadOnly);
+            //qDebug() << "修改文件时间" <<
             file.setFileTime(QFileInfo(source).lastModified(), QFileDevice::FileModificationTime);
 
             if(!QFile::remove(source)){

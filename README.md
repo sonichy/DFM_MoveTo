@@ -1,4 +1,8 @@
 # 深度文管【移动到】插件
+## 安装
+install.sh  
+已知问题：生成desktop，复制到插件目录成功，结束 dde-file-manager-daemon 失败。
+
 ![](moveto.png)
 
 ![](dialog.png)

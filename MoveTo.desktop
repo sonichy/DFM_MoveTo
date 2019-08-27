@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/media/sonichy/job/HY/Linux/Qt/MoveTo/MoveTo %U
+Exec=/media/sonichy/job/HY/Linux/Qt/MoveTo/MoveTo %u
 Icon=edit-cut
 Name=移动到
 X-DFM-MenuTypes=SingleFile;SingleDir;MultiFileDirs;

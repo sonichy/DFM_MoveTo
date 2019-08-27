@@ -1,4 +1,4 @@
-# 深度文管【移动到】插件
+# 深度文管【复制到】【移动到】插件
 ## 安装
 install.sh  
 已知问题：生成desktop，复制到插件目录成功，结束 dde-file-manager-daemon 失败。
@@ -13,7 +13,7 @@ install.sh
 ```
 [Desktop Entry]
 Type=Application
-Exec=/media/sonichy/job/HY/Linux/Qt/MoveTo/MoveTo %U
+Exec=/media/sonichy/job/HY/Linux/Qt/MoveTo/MoveTo cut %U
 Icon=edit-cut
 Name=移动到
 X-DFM-MenuTypes=SingleFile;SingleDir;MultiFileDirs;

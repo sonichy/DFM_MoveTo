@@ -4,6 +4,8 @@
 #include <QDateTime>
 #include <QSettings>
 
+bool isCut = false;
+
 void cut(QString source, QString Dir)
 {
     QString dest = Dir + "/" + QFileInfo(source).fileName();
@@ -14,9 +16,11 @@ void cut(QString source, QString Dir)
             QMessageBox::critical(NULL, "错误", symLinkTarget + "\n创建链接\n" + dest + "\n失败！");
             return;
         }
-        if(!QFile::remove(source)){
-            QMessageBox::critical(NULL, "错误", "无法删除剪切的源文件 " + source, QMessageBox::Ok);
-            return;
+        if(isCut){
+            if(!QFile::remove(source)){
+                QMessageBox::critical(NULL, "错误", "无法删除剪切的源文件 " + source, QMessageBox::Ok);
+                return;
+            }
         }
     }else{
         if(!QFile::copy(source, dest)){
@@ -42,9 +46,10 @@ void cut(QString source, QString Dir)
             file.open(QIODevice::ReadOnly);
             //qDebug() << "修改文件时间" <<
             file.setFileTime(QFileInfo(source).lastModified(), QFileDevice::FileModificationTime);
-
-            if(!QFile::remove(source)){
-                QMessageBox::critical(NULL, "错误", "无法删除剪切的源文件 " + source, QMessageBox::Ok);
+            if(isCut){
+                if(!QFile::remove(source)){
+                    QMessageBox::critical(NULL, "错误", "无法删除剪切的源文件 " + source, QMessageBox::Ok);
+                }
             }
         }
     }
@@ -60,8 +65,9 @@ int main(int argc, char *argv[])
     dir = QFileDialog::getExistingDirectory(NULL, "移动到", dir, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 
     QStringList args = QApplication::arguments();
-    if(args.length() > 1 && dir != ""){
-        for(int i=1; i<args.length(); i++){
+    if (args.length() > 1 && args.at(1) == "cut") isCut = true;
+    if (args.length() > 2 && dir != "") {
+        for(int i=2; i<args.length(); i++){
             if(args.at(i).startsWith("file://")){
                 QUrl url(args.at(i));
                 cut(url.toLocalFile(), dir);

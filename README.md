@@ -3,7 +3,7 @@
 install.sh  
 已知问题：生成desktop，复制到插件目录成功，结束 dde-file-manager-daemon 失败。
 
-![](moveto.png)
+![](rightmenu.png)
 
 ![](dialog.png)
 

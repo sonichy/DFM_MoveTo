@@ -2,6 +2,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDateTime>
+#include <QSettings>
 
 void cut(QString source, QString Dir)
 {
@@ -52,8 +53,11 @@ void cut(QString source, QString Dir)
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
-    QString dir = QFileDialog::getExistingDirectory(NULL, "移动到", ".", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+    a.setOrganizationName("HTY");
+    a.setApplicationName("DFM_MoveTo");
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
+    QString dir = settings.value("dir").toString();
+    dir = QFileDialog::getExistingDirectory(NULL, "移动到", dir, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 
     QStringList args = QApplication::arguments();
     if(args.length() > 1 && dir != ""){
@@ -65,9 +69,7 @@ int main(int argc, char *argv[])
                 cut(args.at(i), dir);
             }
         }
-        //args.removeFirst();
-        //QMessageBox MB(QMessageBox::Information, "移动到", args.join("\n") + "\n移动到\n" + dir);
-        //MB.exec();
+        settings.setValue("dir", dir);
     }
     //qApp->quit();
     //return a.exec();

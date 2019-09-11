@@ -60,11 +60,14 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.setOrganizationName("HTY");
     a.setApplicationName("DFM_MoveTo");
+    QStringList args = QApplication::arguments();
+    //调试
+    //QMessageBox MB(QMessageBox::Information, "复制到、移动到 - 调试", args.join(","));
+    //MB.exec();
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
     QString dir = settings.value("dir").toString();
     dir = QFileDialog::getExistingDirectory(NULL, "移动到", dir, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 
-    QStringList args = QApplication::arguments();
     if (args.length() > 1 && args.at(1) == "cut") isCut = true;
     if (args.length() > 2 && dir != "") {
         for(int i=2; i<args.length(); i++){

@@ -42,10 +42,12 @@ void cut(QString source, QString Dir)
                 }
             }
         }else{
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
             QFile file(dest);
             file.open(QIODevice::ReadOnly);
             //qDebug() << "修改文件时间" <<
             file.setFileTime(QFileInfo(source).lastModified(), QFileDevice::FileModificationTime);
+#endif
             if(isCut){
                 if(!QFile::remove(source)){
                     QMessageBox::critical(NULL, "错误", "无法删除剪切的源文件 " + source, QMessageBox::Ok);
